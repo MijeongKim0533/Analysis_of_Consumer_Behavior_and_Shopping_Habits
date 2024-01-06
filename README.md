@@ -12,7 +12,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
 - 목표 : 소비자 행동 및 습관 데이터 분석을 기반으로 매출을 효과적으로 상승시킬 프로모션과 상품 도출
 ### 3. 데이터 탐색
 - 데이터 : Kaggle / Consumer Behavior and Shopping Habits Dataset\
-  Link: <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>
+  Link: <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>\
 - 데이터 속성: 총 18 columns, 3900 rows\
   Customer ID: 고객 아이디\
   Age: 고객 나이\
@@ -31,7 +31,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Promo Code Used: 프로모션 코드(할인코드) 사용 여부\
   Previous Purchased: 고객의 이전 구매 횟수\
   Payment Method: 지불 방법\
-  Frequency of Purchases: 구매 빈도
+  Frequency of Purchases: 구매 빈도\
 - 데이터 요약\
   Null값 및 이상치 확인\
   Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상\
