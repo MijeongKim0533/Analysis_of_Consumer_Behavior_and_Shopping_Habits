@@ -32,5 +32,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Previous Purchased: 고객의 이전 구매 횟수\
   Payment Method: 지불 방법\
   Frequency of Purchases: 구매 빈도\
+- 데이터 요약
+  
   
   
