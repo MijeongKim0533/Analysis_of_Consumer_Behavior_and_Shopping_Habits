@@ -15,7 +15,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Link: <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>
   
 - 데이터 속성: 총 18 columns, 3900 rows\
-  '''Customer ID: 고객 아이디\
+  ```Customer ID: 고객 아이디\
   Age: 고객 나이\
   Gender: 고객 성별\
   Item Purchased: 구매 상품\
@@ -32,7 +32,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Promo Code Used: 프로모션 코드(할인코드) 사용 여부\
   Previous Purchased: 고객의 이전 구매 횟수\
   Payment Method: 지불 방법\
-  Frequency of Purchases: 구매 빈도'''
+  Frequency of Purchases: 구매 빈도```
   
 - 데이터 요약
   1) Null값 및 이상치 확인\
