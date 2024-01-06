@@ -35,13 +35,13 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Frequency of Purchases: 구매 빈도
   ```
 - 데이터 요약
-  1) Null값 및 이상치 확인\
+  - Null값 및 이상치 확인\
   Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상
 
   <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/73e3873a-8dae-4a0e-8f2b-93b5b8e0f173" width="360" height="320">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
   <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/4b171323-3e08-4205-b2e8-3f199a6d7ebc" width="480" height="320">\
   \
-  2) 상관관계 분석\
+  - 상관관계 분석\
     - Subscription Status - Discount Applied : 0.7 - 구독을 할 경우 할인적용 횟수가 높음\
     - Gender - Discount Applied : -0.6 - 남성고객이 할인적용을 더 많이 받음\
     - Gender - Subscription Status : -0.42 - 남성고객이 구독을 많이 함\
