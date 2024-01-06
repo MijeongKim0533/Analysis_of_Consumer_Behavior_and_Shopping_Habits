@@ -32,6 +32,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Previous Purchased: 고객의 이전 구매 횟수\
   Payment Method: 지불 방법\
   Frequency of Purchases: 구매 빈도\
+  
 - 데이터 요약\
   Null값 및 이상치 확인\
   Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상\
