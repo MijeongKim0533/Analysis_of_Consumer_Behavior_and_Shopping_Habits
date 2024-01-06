@@ -14,7 +14,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
 - 데이터 : Kaggle / Consumer Behavior and Shopping Habits Dataset\
   Link: <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>
   
-- 데이터 속성: 총 18 columns, 3900 rows\
+- 데이터 속성: 총 18 columns, 3900 rows
   ```Customer ID: 고객 아이디
   Age: 고객 나이
   Gender: 고객 성별
@@ -39,7 +39,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상
 
   <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/73e3873a-8dae-4a0e-8f2b-93b5b8e0f173" width="360" height="320">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/4b171323-3e08-4205-b2e8-3f199a6d7ebc" width="480" height="320">
+  <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/4b171323-3e08-4205-b2e8-3f199a6d7ebc" width="480" height="320">\
   2) 상관관계 분석\
   
   
