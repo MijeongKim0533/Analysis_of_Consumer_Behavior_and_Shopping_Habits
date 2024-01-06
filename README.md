@@ -35,6 +35,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
 - 데이터 요약
     - Null값 및 이상치 확인\
       Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상\
+      \
       <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/73e3873a-8dae-4a0e-8f2b-93b5b8e0f173" width="300" height="320">
   
   
