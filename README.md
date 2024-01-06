@@ -13,8 +13,8 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
 ### 3. 데이터 탐색
 - 데이터 : Kaggle / Consumer Behavior and Shopping Habits Dataset
   Link: <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>
-- 데이터 속성: 총 18 columns, 3900 rows
-  Customer ID: 고객 아이디
+- 데이터 속성: 총 18 columns, 3900 rows\
+  Customer ID: 고객 아이디\
   Age: 고객 나이
   Gender: 고객 성별
   Item Purchased: 구매 상품
