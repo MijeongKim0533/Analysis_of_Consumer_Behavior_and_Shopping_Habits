@@ -31,7 +31,7 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   Promo Code Used: 프로모션 코드(할인코드) 사용 여부\
   Previous Purchased: 고객의 이전 구매 횟수\
   Payment Method: 지불 방법\
-  Frequency of Purchases: 구매 빈도\
+  Frequency of Purchases: 구매 빈도\  
 - 데이터 요약
   
   
