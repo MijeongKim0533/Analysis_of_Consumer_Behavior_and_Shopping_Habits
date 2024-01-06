@@ -42,9 +42,9 @@ Analysis of consumer behavior and shopping habits, and selection of promotions f
   <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/4b171323-3e08-4205-b2e8-3f199a6d7ebc" width="480" height="320">\
   \
   2) 상관관계 분석\
-    1) Subscription Status - Discount Applied : 0.7 - 구독을 할 경우 할인적용 횟수가 높음\
-    2)Gender - Discount Applied : -0.6 - 남성고객이 할인적용을 더 많이 받음\
-    3)Gender - Subscription Status : -0.42 - 남성고객이 구독을 많이 함\
+    - Subscription Status - Discount Applied : 0.7 - 구독을 할 경우 할인적용 횟수가 높음\
+    - Gender - Discount Applied : -0.6 - 남성고객이 할인적용을 더 많이 받음\
+    - Gender - Subscription Status : -0.42 - 남성고객이 구독을 많이 함\
   <img src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/f700166a-d063-42d3-bf6a-61068a12707a" width="700" height="600">
   
   
