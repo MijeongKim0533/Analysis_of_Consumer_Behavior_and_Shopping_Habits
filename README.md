@@ -56,22 +56,22 @@ import matplotlib.pyplot as plt
   <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/76d1b53f-4aa2-4178-a1e9-496da4cd7fbf" width="600" height="500">
 
 - 컬럼별 정보
-  - 성별: 남성고객이 여성고객보다 약 2배 많음\
+  - 성별: 남성고객이 여성고객보다 약 2배 많음
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/7aefd432-e5b6-4bb2-9928-98cab190b861" width="250" height= "260">  
 
   - 고객 연령대: 10, 70대를 제외하고 고르게 분포  
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/a91e8e9f-918d-4777-8f32-f319f513c994" width="300" height="280">  
   
-  - 리뷰점수 분포도: 점수 분포가 고르게 되어 있음. 판매 물품이 고가의 특정 제품이 아니라 잡화이다보니 리뷰점수가 고르게 분포된 것으로 보임\
+  - 리뷰점수 분포도: 점수 분포가 고르게 되어 있음. 판매 물품이 고가의 특정 제품이 아니라 잡화이다보니 리뷰점수가 고르게 분포된 것으로 보임
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/ba22794c-51d1-4d94-a104-a920d7250f05" width="350">  
 
   - 사이즈별 판매량: M사이즈가 제일 많이 판매됨. 일반적으로 많이 입는 사이즈가 판매랑이 높음\
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/dbdc3e79-0b0b-427a-b794-cd2f75ce6cba" width="350">  
 
-  - 지역별 판매량: 지역에 따라 큰 편차 없이 비교적 고르게 분포\
+  - 지역별 판매량: 지역에 따라 큰 편차 없이 비교적 고르게 분포
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/a7ec9d2a-36fe-4a42-b941-38ce364e2d43" height='300'>  
 
-  - 결제방법별 & 배송타입별 거래량: 현금거래와 배송타입이 다양한 것으로 보아 오프라인과 온라인 상점을 같이 운영하는 곳으로 예상\
+  - 결제방법별 & 배송타입별 거래량: 현금거래와 배송타입이 다양한 것으로 보아 오프라인과 온라인 상점을 같이 운영하는 곳으로 예상
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/b71409c1-c49b-4955-9aaf-69eda0d00021" width="330" height="270">&nbsp;
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/c564c64c-fa22-43ff-bfda-9569156556e5" width="330" height="270">
 
