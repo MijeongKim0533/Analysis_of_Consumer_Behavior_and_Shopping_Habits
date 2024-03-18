@@ -1,7 +1,5 @@
 Analysis of Consumer Behavior and Shopping Habits
 =====
-Analysis of consumer behavior and shopping habits, and selection of promotions for revenue increase
-----
 ### 1. 프로젝트 주제
 봄 시즌 매출 증대를 위한 프로모션 선정 및 프로모션 상품 도출
 ### 2. 분석 목적
