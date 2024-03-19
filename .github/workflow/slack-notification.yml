@@ -14,6 +14,6 @@ jobs:
       
       - name: Send Slack Notification
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.https://hooks.slack.com/services/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 }}
+          SLACK_WEBHOOK_URL: ${{ secrets.https://hooks.slack.com/services/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 }}
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub repository has been updated."}' $SLACK_WEBHOOK_URL
