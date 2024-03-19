@@ -16,4 +16,4 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub repository has been updated."}' ${SLACK_WEBHOOK_URL}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub repository has been updated by ${GITHUB_ACTOR}."}'}
