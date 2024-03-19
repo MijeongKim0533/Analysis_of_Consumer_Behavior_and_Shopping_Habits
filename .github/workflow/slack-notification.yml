@@ -16,4 +16,5 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.https://hooks.slack.com/services/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 }}
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub repository has been updated."}' $SLACK_WEBHOOK_URL
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub repository has been updated."}' ${SLACK_WEBHOOK_URL}
+
