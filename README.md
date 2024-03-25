@@ -33,43 +33,110 @@ import plotly.graph_objects as go
 import plotly.express as px
 ```
 4.2 데이터 확인
-1) 데이터 : <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>
+1) 데이터 소스 : <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>  
   
 2) 데이터 정보 : 총 18 columns, 3900 rows
-  ```Customer ID: 고객 아이디
-  Age: 고객 나이
-  Gender: 고객 성별
-  Item Purchased: 구매 상품
-  Category: 상품 카테고리
-  Purchase Amount (USD): 구매 금액
-  Location: 고객 거주 지역
-  Size: 상품 사이즈
-  Color: 상품 색상
-  Season: 구매 시즌
-  Review Rating: 리뷰 점수
-  Subscription Status: 구독 여부
-  Shipping Type: 상품 배송 타입
-  Discount Applied: 할인 여부
-  Promo Code Used: 프로모션 코드(할인코드) 사용 여부
-  Previous Purchased: 고객의 이전 구매 횟수
-  Payment Method: 지불 방법
-  Frequency of Purchases: 구매 빈도
-  ```
-1. 데이터 요약
-  - Null값 및 이상치 확인 : Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상  
-  <img width="415" alt="스크린샷 2024-03-25 오전 10 09 42" src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/6eabc6aa-d471-479c-845d-90b596f32eca">  
- ![newplot](https://github.com/MijeongKim0533/codeit_practice/assets/152786534/67f99612-7be9-404c-9abf-cb9540ab7197)
-  
-- 상관관계 분석
-    - Subscription Status - Discount Applied : 0.7 -> 구독을 할 경우 할인적용 횟수가 높음
-    - Gender - Discount Applied : -0.6 -> 남성고객이 할인적용을 더 많이 받음
-    - Gender - Subscription Status : -0.42 -> 남성고객이 구독을 많이 함  
-  
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/76d1b53f-4aa2-4178-a1e9-496da4cd7fbf" width="600" height="500">
+    ```Customer ID: 고객 아이디
+    Age: 고객 나이
+    Gender: 고객 성별
+    Item Purchased: 구매 상품
+    Category: 상품 카테고리
+    Purchase Amount (USD): 구매 금액
+    Location: 고객 거주 지역
+    Size: 상품 사이즈
+    Color: 상품 색상
+    Season: 구매 시즌
+    Review Rating: 리뷰 점수
+    Subscription Status: 구독 여부
+    Shipping Type: 상품 배송 타입
+    Discount Applied: 할인 여부
+    Promo Code Used: 프로모션 코드(할인코드) 사용 여부
+    Previous Purchased: 고객의 이전 구매 횟수
+    Payment Method: 지불 방법
+    Frequency of Purchases: 구매 빈도
+    ```
+4.3 Null 확인 : Null이나 Null 대신 대체값으로 채워진 행 없음
+   
+  <img width="400" alt="스크린샷 2024-03-25 오전 10 09 42" src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/cc9fd251-6a57-4375-8572-a2ed714b0157"><br/>
 
-- 컬럼별 정보
-  - 성별: 남성고객이 여성고객보다 약 2배 많음
-<img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/7aefd432-e5b6-4bb2-9928-98cab190b861" width="250" height= "260">  
+
+
+4.4 이상치 확인 : 수치형 컬럼 중 이상치 없음
+      ![newplot](https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/b29e3da2-a504-4639-8bc6-a880c502a5b2)
+  
+4.5 상관관계 확인
+- 수치형 커럼 생성 : 상관관계를 보기 위해 범주형 컬럼을 수치형으로 변경하여 컬럼 생성
+  ```
+  def frequency_to_num(frequency_of_purchases):
+    
+      if frequency_of_purchases == 'Weekly':
+        return 5
+      elif frequency_of_purchases in ['Fortnightly', 'Bi-Weekly']:
+        return 4
+      elif frequency_of_purchases == 'Monthly':
+        return 3
+      elif frequency_of_purchases in ['Every 3 Months', 'Quarterly']:
+        return 2
+      else:
+        return 1
+  ```
+  ```
+  df['frequency_of_purchases'] = df['Frequency of Purchases'].apply(frequency_to_num)
+  ```
+ - Subscription Status, Discount Applied, Gender 3개의 컬럼이 서로 상관관계가 높게 나옴  
+  
+   - Subscription Status - Discount Applied : 0.7 
+   - Gender - Discount Applied : -0.6 
+   - Gender - Subscription Status : -0.42  
+    
+        ![newplot (1)](https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/4ebbaa23-41bb-4e2b-af83-60c29e2caa0d)
+
+4.6 컬럼별 분석
+1) 성별 고객 수 및 비율  
+```
+# 고객 남녀 수 그래프
+
+fig = px.bar(df_gender_count, x=df_gender_count.index, y=df_gender_count.values, 
+             title='Count of Customers by Gender',
+             color=df_gender_count.index,
+             color_discrete_sequence=['royalblue', 'tomato'],
+             text=df_gender_count.values)  
+
+fig.update_traces(texttemplate='%{y:,.0f}', textposition='outside')  
+
+fig.update_layout(
+    xaxis_title='',  
+    yaxis_title='count',  
+    width=600,  
+    height=500,
+    plot_bgcolor='white'
+)
+
+fig.update_layout(showlegend=False)
+
+fig.show()
+```
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f3745c1e-5ba5-4855-b603-a0d177c93339" width="300" height="280">
+    <img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/6cd41a25-16a8-4459-a382-78185d80198f" width="300" height="210">
+</div>
+
+2) 연령별 고객 수　　　　　　　　　　　　　　　　　　　　　3. 리뷰점수 분포   
+<img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/c7d121c3-321d-46d3-95f8-af23c5307010" width="350" height="300"><img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/1ce12c0e-eaa7-4cdd-9e5c-9484990cea71" width="350" height="300">
+
+4. 사이즈별 판매량 　　　　　　　　　　　　　　　　　　　　　5. Payment Method별 거래수 
+<img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f5a096f9-f4e2-445d-b7af-e7082ba940ad" width="350" height="300"><img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/18210fa7-2825-4bc9-9c94-90334a145aa9" width="350" height="300">
+
+6. Location별 판매량
+<img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f52e5268-3596-4dd6-bec5-fe31e5f2302e">
+
+
+
+
+
+
+
 
   - 고객 연령대: 10, 70대를 제외하고 고르게 분포  
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/a91e8e9f-918d-4777-8f32-f319f513c994" width="300" height="280">  
