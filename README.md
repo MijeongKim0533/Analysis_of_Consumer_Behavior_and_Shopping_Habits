@@ -1,27 +1,40 @@
-Analysis of Consumer Behavior and Shopping Habits
+소비자 행동 및 쇼핑 습관 분석 
 =====
 ### 1. 프로젝트 주제
-봄 시즌 매출 증대를 위한 프로모션 선정 및 프로모션 상품 도출
+2024년 봄 시즌 쇼핑몰 매출 증대를 위한 프로모션 구상 및 프로모션 상품 선정
 ### 2. 분석 목적
-- 개요 : 매출 증대를 위해 3가지 형태의 프로모션 방향성을 고려, 가장 효과적인 프로모션을 선정하기 위해 데이터 분석 진행
-  1. 전체고객 구매 강화 프로모션
-  2. 신규고객 유입 강화 프로모션
-  3. VIP고객 구매 강화 프로모션
-- 목표 : 소비자 행동 및 습관 데이터 분석을 기반으로 매출을 효과적으로 상승시킬 프로모션과 상품 도출
+1. 개요:  매출 증대를 위해 3가지 형태의 프로모션 방향성을 고려, 가장 효과적인 프로모션을 선정하기 위해 데이터 분석 진행
+    -  전체 고객 구매량 강화 프로모션
+    -  신규 고객 유입 강화 프로모션
+    -  충성 고객 락인(Lock-in) 프로모션
+   
+2. 목표: 소비자 행동 및 습관 데이터 분석을 기반으로 매출을 효과적으로 상승시킬 프로모션과 상품 도출
 
-### 3. 사용한 라이브러리
+### 3. Requirements
+```
+* Python 3.9+
+```
+
+### 4. Installation
+```
+pip install pandas
+pip install matplotlib
+pip install plotly
+```
+### 4. EDA
+4.1 패키지 불러오기
 ```
 import pandas as pd
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
-%matplotlib inline
+import seaborn as sns
+import plotly.graph_objects as go
+import plotly.express as px
 ```
-### 4. 데이터 탐색
-1. 데이터 : Kaggle / Consumer Behavior and Shopping Habits Dataset\
-  Link: <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>
+4.2 데이터 확인
+1) 데이터 : <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>
   
-2. 데이터 속성: 총 18 columns, 3900 rows
+2) 데이터 정보 : 총 18 columns, 3900 rows
   ```Customer ID: 고객 아이디
   Age: 고객 나이
   Gender: 고객 성별
@@ -41,11 +54,10 @@ import matplotlib.pyplot as plt
   Payment Method: 지불 방법
   Frequency of Purchases: 구매 빈도
   ```
-3. 데이터 요약
-  - Null값 및 이상치 확인 : Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상
-
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/0f579f58-31b5-42c7-ad36-bde18b03e5e5" width="280" height="280">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/1c93bd2a-63b1-4b6b-8e21-e79317ae2f7b" width="390" height="280">
+1. 데이터 요약
+  - Null값 및 이상치 확인 : Null값과 이상치가 없는 것으로 보아 클렌징이 한 번 이뤄진 데이터로 예상  
+  <img width="415" alt="스크린샷 2024-03-25 오전 10 09 42" src="https://github.com/MijeongKim0533/codeit_practice/assets/152786534/6eabc6aa-d471-479c-845d-90b596f32eca">  
+ ![newplot](https://github.com/MijeongKim0533/codeit_practice/assets/152786534/67f99612-7be9-404c-9abf-cb9540ab7197)
   
 - 상관관계 분석
     - Subscription Status - Discount Applied : 0.7 -> 구독을 할 경우 할인적용 횟수가 높음
