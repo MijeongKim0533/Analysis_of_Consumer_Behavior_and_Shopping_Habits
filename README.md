@@ -54,10 +54,11 @@ import plotly.express as px
     Previous Purchased: 고객의 이전 구매 횟수
     Payment Method: 지불 방법
     Frequency of Purchases: 구매 빈도
-    ```
+    ```  
+    <br/>
 4.3 Null 확인 : Null이나 Null 대신 대체값으로 채워진 행 없음
    
-  <img width="400" alt="스크린샷 2024-03-25 오전 10 09 42" src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/cc9fd251-6a57-4375-8572-a2ed714b0157"><br/>
+  <img width="400" alt="스크린샷 2024-03-25 오전 10 09 42" src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/cc9fd251-6a57-4375-8572-a2ed714b0157"><br/><br/>
 
 
 
@@ -65,7 +66,7 @@ import plotly.express as px
       ![newplot](https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/b29e3da2-a504-4639-8bc6-a880c502a5b2)
   
 4.5 상관관계 확인
-- 수치형 커럼 생성 : 상관관계를 보기 위해 범주형 컬럼을 수치형으로 변경하여 컬럼 생성
+- 수치형 컬럼 생성 : 상관관계를 보기 위해 범주형 컬럼을 수치형으로 변경하여 컬럼 생성
   ```
   def frequency_to_num(frequency_of_purchases):
     
@@ -118,54 +119,34 @@ fig.show()
 ```
 
 <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f3745c1e-5ba5-4855-b603-a0d177c93339" width="300" height="280">
-    <img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/6cd41a25-16a8-4459-a382-78185d80198f" width="300" height="210">
+    <img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f3745c1e-5ba5-4855-b603-a0d177c93339" width="360" height="330">
+    <img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/6cd41a25-16a8-4459-a382-78185d80198f" width="360" height="245">
 </div>
 
-2) 연령별 고객 수　　　　　　　　　　　　　　　　　　　　　3. 리뷰점수 분포   
-<img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/c7d121c3-321d-46d3-95f8-af23c5307010" width="350" height="300"><img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/1ce12c0e-eaa7-4cdd-9e5c-9484990cea71" width="350" height="300">
+2) 연령별 고객 수　　　　　　　　　　　　　　　　　　　　3. 리뷰점수 분포   
+<img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/c7d121c3-321d-46d3-95f8-af23c5307010" width="360" height="300"><img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/1ce12c0e-eaa7-4cdd-9e5c-9484990cea71" width="360" height="300">
 
-4. 사이즈별 판매량 　　　　　　　　　　　　　　　　　　　　　5. Payment Method별 거래수 
-<img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f5a096f9-f4e2-445d-b7af-e7082ba940ad" width="350" height="300"><img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/18210fa7-2825-4bc9-9c94-90334a145aa9" width="350" height="300">
+4. 사이즈별 판매량 　　　　　　　　　　　　　　　　　　　　5. Payment Method별 거래수 
+<img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f5a096f9-f4e2-445d-b7af-e7082ba940ad" width="360" height="300"><img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/18210fa7-2825-4bc9-9c94-90334a145aa9" width="360" height="300">
 
 6. Location별 판매량
 <img src="https://github.com/MijeongKim0533/PJ_Funnel_Analysis/assets/152786534/f52e5268-3596-4dd6-bec5-fe31e5f2302e">
 
 
-
-
-
-
-
-
-  - 고객 연령대: 10, 70대를 제외하고 고르게 분포  
-<img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/a91e8e9f-918d-4777-8f32-f319f513c994" width="300" height="280">  
+### 4. 심층 분석
+  1. 프로모션 타겟 선정을 위한 분석 : 매출이 높은 고객층 찾기(고객 분석 및 segmentation)
+- 전체 고객 객단가 및 중앙값
   
-  - 리뷰점수 분포도: 점수 분포가 고르게 되어 있음. 판매 물품이 고가의 특정 제품이 아니라 잡화이다보니 리뷰점수가 고르게 분포된 것으로 보임
-<img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/ba22794c-51d1-4d94-a104-a920d7250f05" width="350">  
+  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/07e35cf4-508d-4ada-a5ad-376968b89826" width="400" height="420">
 
-  - 사이즈별 판매량: M사이즈가 제일 많이 판매됨. 일반적으로 많이 입는 사이즈가 판매랑이 높음\
-<img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/dbdc3e79-0b0b-427a-b794-cd2f75ce6cba" width="350">  
-
-  - 지역별 판매량: 지역에 따라 큰 편차 없이 비교적 고르게 분포
-<img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/a7ec9d2a-36fe-4a42-b941-38ce364e2d43" height='300'>  
-
-  - 결제방법별 & 배송타입별 거래량: 현금거래와 배송타입이 다양한 것으로 보아 오프라인과 온라인 상점을 같이 운영하는 곳으로 예상
-<img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/b71409c1-c49b-4955-9aaf-69eda0d00021" width="330" height="270">&nbsp;
-<img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/c564c64c-fa22-43ff-bfda-9569156556e5" width="330" height="270">
-
-### 4. 데이터 심층분석
----
-__1) 프로모션 타겟 선정을 위한 분석 : 매출이 높은 고객층 찾기(고객 분석)__
-- __전체 고객 객단가 및 중앙값__
-  
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/915b9a39-6019-43c6-a735-d1b817f0d5f7" width="330" height="330">
-
-- __일반고객-VIP고객 그룹핑 후 객단가 비교__
+- __일반고객-VIP고객 segmentation__
   ```
-  <고객 그룹핑 기준>
-  Frequency of Purchases 컬럼을 기준으로 1년동안의 구매횟수를 추정. 
-  추정 구매횟수가 26회 이상인 고객을 VIP, 미만은 Regular 고객이라 지칭
+  <고객 segmentation 기준>
+
+  Frequency of Purchases 컬럼을 기준으로 앞으로 1년동안의 구매횟수를 추정. 
+  추정 구매횟수가 26회 이상인 고객을 VIP, 미만은 Regular 고객으로 분류
+
+  Previous Purchases 컬럼이 있지만 기준이 되는 날이 없어
   ```
   일반고객과 VIP고객의 객단가는 거의 비슷. 같다고 봐도 무방해 보인다.   
 
