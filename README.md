@@ -41,7 +41,8 @@ from sklearn.metrics import silhouette_samples, silhouette_score
 1) 데이터 소스 : <https://www.kaggle.com/datasets/zeesolver/consumer-behavior-and-shopping-habits-dataset>  
   
 2) 데이터 정보 : 총 18 columns, 3900 rows
-    ```Customer ID: 고객 아이디
+    ```
+    Customer ID: 고객 아이디
     Age: 고객 나이
     Gender: 고객 성별
     Item Purchased: 구매 상품
@@ -337,93 +338,172 @@ fig.show()
 &nbsp;&nbsp;&nbsp;<충성고객>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<일반고객><br/><br/>
 <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/6e500e5c-0acc-4c03-a79c-8790fc5c17d4" width="380" height="300"><img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/6a685805-7044-4173-9a48-b3485248133c width="390" height="300">
 
-#### 4. 예상 매출액 예측
+#### 4. 예상 매출액 
+  1. 전체 고객의 평균 구매금액 및 중앙값<br/>
+      ```
+      sales_df = df['Purchase Amount (USD)'].agg(['mean', 'median'])
 
+      fig = px.bar(sales_df, x=sales_df.index, y=sales_df.values,
+                title='Average & Median Purchase Amount',
+                color=sales_df.index, 
+                color_discrete_sequence=['silver'])
 
+      fig.update_traces(texttemplate='%{y:.2f}', textposition='outside')  
 
+      fig.update_layout(
+          xaxis_title='', 
+          yaxis_title='Purchase Amount (USD)',    
+          width=400,  
+          height=500,
+          showlegend=False, 
+          plot_bgcolor='white')
 
+      fig.show()
+      ```
+      <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/07e35cf4-508d-4ada-a5ad-376968b89826" width="400" height="420">
 
+  2. 충성고객-일반고객 비율 및 평균 구매금액<br/>
+   - 충성고객-일반고객 비율 : 충성고객이 약 40%, 일반고객이 60% 정도를 차지<br/>
+      <img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/0224d3d7-9211-402a-a20b-75acfcb46828 width="340" height="360">
+      <img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/e1084655-7b8e-4959-a375-4dbd6caa32ca width="390" height="260">
+  - 충성고객-일반고객 그룹별 평균 구매금액 : 
+    그룹별로 평균단가에서 차이가 있을 것이라고 예상했지만 차이가 거의 없음<br/>
+      ```
+      # 그룹별 평균 금액
+      df_by_class_USD = df.groupby('customer_class')['Purchase Amount (USD)'].mean()
 
+      # 그래프
+      fig = px.bar(df_by_class_USD, x=df_by_class_USD.index, y=df_by_class_USD.values,
+                title='Average Order Value by Customer Type',
+                color=df_by_class_USD.index, 
+                color_discrete_sequence=['silver', 'gold'])
 
+      fig.update_traces(texttemplate='%{y:.2f}', textposition='outside')  
 
+      fig.update_layout(
+          xaxis_title='', 
+          yaxis_title='Average Order Value (USD)',    
+          width=400,  
+          height=500,
+          showlegend=False, 
+          plot_bgcolor='white')
 
+      fig.show()
+      ```
 
-  1. 프로모션 타겟 선정을 위한 분석 : 매출이 높은 고객층 찾기(고객 분석 및 segmentation)
-- 전체 고객 객단가 및 중앙값
+      
+      <img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/bcec1c75-1bd3-4b29-bec1-796811ea2c2d width="400" height="420">
+
+  1. 예상매출액 계산하기<br/>
+
+   - 새로운 컬럼 생성 : 고객별로 이전구매횟수와 평균 구매단가를 곱하여 예상 매출액 컬럼 생성<br/><br/>
+      ```
+      def get_profit_column(customer_class):
+
+        if customer_class == 'Regular':
+            return 59.6 * 15
+        else:
+            return 60 * 40
+
+      df['expected_sales'] = df['customer_class'].apply(get_profit_column)
+      ```
+      <br/>
+   - 예상 매출액 계산<br/>
+      
+      **예상 매출액 = 평균 객단가 x 이전 구매횟수** 
+      
+      ```
+      expected_sales_df = df.groupby("customer_class")["expected_sales"].sum()
+
+      fig = px.bar(expected_sales_df, x=expected_sales_df.index, y=expected_sales_df.values,
+             title='Sales Projection by Customer Class',
+             color=expected_sales_df.index, 
+             color_discrete_sequence=['silver', 'gold'])
+
+      fig.update_traces(texttemplate='%{y:,.0f}', textposition='outside')  
+
+      fig.update_layout(
+          xaxis_title='', 
+          yaxis_title='Projected Sales (USD)',    
+          width=400,  
+          height=500,
+          showlegend=False, 
+          plot_bgcolor='white')
+
+      fig.show()
+      ```
+      <img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/ef3ae8e8-4fbd-47da-8ced-1b15e6d45454 width="340" height="360"><img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/80018cf2-96d5-45a4-b3a5-107a8f18d501 width="390" height="260"><br/>
+
+  **&rarr; 전체 고객의 약 40%를 차지하는 충성고객이 매출의 약 64%를 올려줄 것이라고 예상됨**<br/>
+  **&rarr; 충성고객이 매출의 많은 부분을 차지할 것으로 예상되므로 충성고객을 대상으로 프로모션을 진행하는 것이 타당해 보임**
+
+### 7. 프로모션 전략 세우기
+1) 충성고객 분석
+- 연령대 : 50대 고객이 다른 연령대보다 조금 더 많음
+  ```
+  # 충성고객만 데이터 분리
+  df_by_royal = df[df['customer_class']=='Royal']
+
+  # 연령대별 충성고객 수 확인
+  df_by_royal_age = df_by_royal['age_group'].value_counts().sort_index()
+
+  # 그래프
+  fig = px.bar(df_by_royal_age, x=df_by_royal_age.index, y='count',
+             title='Sales Count by Age (Royal)',
+             color=df_by_royal_age.index,  
+             color_discrete_sequence=px.colors.sequential.GnBu[2:])
+
+  fig.update_traces(texttemplate='%{y:.0f}', textposition='outside')  
+
+  fig.update_layout(
+      xaxis_title='', 
+      yaxis_title='count',   
+      width=600,  
+      height=500,
+      showlegend=False, 
+      plot_bgcolor='white')
+
+  fig.show()
+  ```
+  <img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/3b22abb7-0079-492c-b1dc-62a995c2f647 width="600" height="400"><br/>
+
+- 성별에 따른 구매 아이템<br/>
+  지난 봄 시즌 남성 충성고객과 여성 충성고객이 가장 많이 구매한 아이템 top5 확인<br/>
+  &rarr; 성별에 따라 많이 구매한 아이템 순위가 달랐다. 여기서 흥미로웠던 점은 남성고객의 구매 아이템 top5에 드레스와 쥬얼리가 1, 2위를 차지한 점이다. 이를 통해 남성의 경우 아내나 여자친구에게 선물용으로 구매를 많이 한다고 추측하였다.
+  ```
+  # 남성 충성고객
+  df_by_spring_royal_men = df[(df['Season']=='Spring') & (df['customer_class']=='Royal') & (df['Gender']=='Male')]
+  df_by_spring_royal_men_item = df_by_spring_royal_men['Item Purchased'].value_counts().sort_values(ascending=False)
+
+  # 여성 충성고객
+  df_by_spring_royal_women = df[(df['Season']=='Spring') & (df['customer_class']=='Royal') & (df['Gender']=='Female')]
+  df_by_spring_royal_women_item = df_by_spring_royal_women['Item Purchased'].value_counts().sort_values(ascending=False)
+  ```
+  <img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/9648f0ee-da24-45d2-8ce3-1a90ea86bfcf width="600" height="400"><br/>
+  <img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/79309342-4afe-4e10-86c6-2b6ba085bf2d width="600" height="400">
+    |성별|구매 아이템|
+    |------|---|
+    |남성|Dress > Jewelry > T-shirt > Cloves > Sweater|
+    |여성|Blouse > Shirt > Shoes > Handbag > Hoodie = Sandals = Dress|
+<br/>
+
+2) 프로모션 선택
+- 선택 프로모션 : 충성고객 락인(lock-in) 프로모션
+- 전략 : 충성고객이 많이 구매했던 아이템을 배치 및 홍보
+
+### 8. 결론
+#### '여성을 위한 선물용 상품' 으로 프로모션을 계획
+남성 충성 고객의 봄시즌 주요 구매 상품은 '드레스, 쥬얼리'👗💍 <br/> 
+'여성을 위한 선물용 상품'으로 프로모션을 진행할 경우, 남성 충성고객과 여성고객에게 모두 어필이 될 수 있다고 예상.<br/><br/>
+추가적으로 시즌성 이벤트인 '화이트데이' 선물 프로모션을 진행할 경우, 남성 충성 고객의 구매 유도에 긍정적 영향을 줄 것.<br/>선물 상품 외 일반 상품도 추가한다면, 여성 고객의 유입을 통해 전체 매출 상승에 기여 가능할 것
+
+<img src=https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/8bf522b7-23d4-4f1e-baa4-e5cd4f8c0be0 width="500" height="250">
+
   
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/07e35cf4-508d-4ada-a5ad-376968b89826" width="400" height="420">
-
-- __일반고객-VIP고객 segmentation__
-  ```
-  <고객 segmentation 기준>
-
-  Frequency of Purchases 컬럼을 기준으로 앞으로 1년동안의 구매횟수를 추정. 
-  추정 구매횟수가 26회 이상인 고객을 VIP, 미만은 Regular 고객으로 분류
-
-  Previous Purchases 컬럼이 있지만 기준이 되는 날이 없어
-  ```
-  일반고객과 VIP고객의 객단가는 거의 비슷. 같다고 봐도 무방해 보인다.   
-
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/24296243-500b-4725-a9fe-ee42c7e0bce7" width="330" height="330">
-
-- __일반고객-VIP고객 예상 매출액 비교__
-  ```
-  1년 예상 매출액 = 객단가 * 연간 예상 구매횟수(Frequency of Purchases 컬럼을 기준으로 예상 구매횟수 예측)
-  ```  
-  일반고객과 VIP고객의 객단가는 차이가 거의 없었으나 구매 빈도에서 차이가 많이 났다. 그래서 Frequency of Purchases컬럼을 바탕으로 1년 동안의 예상 구매횟수를 추측하여 1년 예상 매출액을 예측해보았다. 그 결과 VIP고객이 일반고객보다 4배 이상 매출을 가져다 줄 것으로 예측되었다.
-  
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/11c1cff4-7623-4ed1-9a11-04837b9236d7" width="330" height="330">&nbsp;&nbsp;
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/56eaf4f2-4ccb-4e3a-baaf-efa8b2bc6ff6" width="330" height="330">
-
-- __일반고객-VIP고객 비율__  
-  일반고객과 VIP고객의 비율을 살펴보면 6:4 정도의 비율임을 알 수 있다.
-
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/b7f8caa9-a110-4f7c-8d4f-dc1af29d0d1c" width="330" height="330">&nbsp;&nbsp;
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/617563fa-9fd3-467e-9500-afd84d64f545" width="330" height="330">
-  ```
-  :mag_right: VIP고객은 전체고객의 40% 정도이지만 예상매출액은 일반고객의 4배가 넘는다. 
-  프로모션은 VIP고객을 대상으로 하는 것이 매출증대에 효과적일 것이라 예상된다.
-  ```
- --- 
-  
-
-__2) 적합한 프로모션 선정을 위한 분석 : 할인 VS 인기상품__  
-  
-- __매출액, 할인적용, 구매빈도 컬럼의 상관계수 확인__  
-  할인 프로모션을 하는 것이 타당한지 보기 위해 매출액(Purchase Amount), 할인적용(discount_applied), 구매빈도(purchases_times_per_annual)컬럼간의 상관계수를 확인해 보았으나 상관관계가 없는 것으로 보인다.   
-  
-   <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/d6726164-411f-45f7-9a6b-a27a4879c9d1">
-  
-- __일반고객-VIP고객 그룹핑 후 상관계수 확인__  
-  전체고객을 대상으로 상관계수를 확인했을 때 상관관계가 있어보이지 않았다. 심슨의 역설이 생길 수 있으니 일반고객과 VIP고객으로 그룹핑 한 후 상관관계가 있는지 확인해 보았다.    
-
-  __[VIP고객]__  
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/8d4ee813-fc2d-42e0-ac84-c0fe602f3680">
-
-  __[일반고객]__  
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/84a8cee0-a6aa-4fe9-baf1-b0c1f99368bf">
-  ```
-  :mag_right: 일반고객과 VIP고객으로 그룹핑한 후 상관계수를 확인한 결과 약간의 변화는 있었지만 매출, 할인적용, 구매빈도 간의 상관관계는 있어보이지 않았다. 때문에 할인 프로모션은 매출증대에 효과적으로 보이지 않아 고객들이 많이 찾는 인기상품들로 프로모션을 진행하는 것이 낫다고 판단했다.
-  ```
----
-__3) 프로모션 상품 선정을 위한 분석__  
-앞에서 VIP를 대상으로 지금까지 많이 판매된 상품들로 프로모션을 진행하는 것이 매출증대에 효과적으로 판단되어 그동안 VIP가 많이 구매한 상품들을 남녀로 나누어 분석  
-
-- 봄시즌 남성 VIP 구입 아이템 순위  
-  Sweater, Shorts, Gloves 가 VIP남성 고객이 봄에 가장 많이 구매한 아이템이었다.
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/40a980ac-f385-4571-b522-4f8d666a661d">
-
-- 봄시즌 여성 VIP 구입 아이템 순위  
-  Boots가 VIP여성 고객이 봄에 가장 많이 구매한 아이템이었다.
-  <img src="https://github.com/MijeongKim0533/Analysis_of_Consumer_Behavior_and_Shopping_Habits/assets/152786534/b4753a39-259b-470e-b7a7-e2281141811a">
----
 
 
-### 5. 결론
-VIP들의 객단가는 일반고객과 다르지 않다. 매출을 늘리기 위해서는 방문횟수를 더 늘리던가 객단가를 올리는 방법뿐이다. 제품 디스플레이 를 좀더 짧은 주기로 바꿔 VIP고객들이 호기심을 가지고 더 많이 방문하도록 하여 매출을 늘리는 방법이 어떤가 한다. 물론 다양한 제품을 더 가져다 놓는다는 것은 안 팔릴 수도 있다는 리스크를 감안해야 하지만 고객들의 방문횟수를 늘리면 분명 매출이 증가할 것이라고 생각한다. 그래서 프로모션은 VIP를 대상으로  
 
-### 6. 느낀점
-데이터 선정에 시간을 더 많이 투자해야겠다. 
+
    
 
 
